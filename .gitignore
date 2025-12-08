@@ -1,0 +1,45 @@
+# Virtual env
+venv/
+# alternative virtualenv names
+.venv/
+env/
+# python local env file
+.python-version
+# macOS
+*.DS_Store
+.DS_Store
+# Python caches
+__pycache__/
+*.py[cod]
+# typical env and metadata
+.env
+.ipynb_checkpoints/
+
+# Editor / IDE
+.vscode/
+.idea/
+
+# Build / packaging
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Type checking / caches
+.mypy_cache/
+.cache/
+
+# Logs
+logs/
+*.log
+
+# Database / misc
+*.sqlite3
+*.db
+# model / data placeholders (you can remove/adjust as needed)
+# models/*.h5   # keep commented — model .h5 are tracked via LFS, not ignored

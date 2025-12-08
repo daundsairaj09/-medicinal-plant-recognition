@@ -1,0 +1,327 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaf Detector | AI Medicinal Plant Recognition</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>Leaf Detector</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#upload">Detect</a>
+                    <a href="#project">Project</a>
+                    <a href="#about">About</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>AI-Powered Medicinal Plant Recognition</h1>
+                <p>Upload a photo of any medicinal plant and instantly identify its species, medicinal uses, active compounds, and safety information. Powered by advanced <span class="highlight">CNN deep learning models</span> with over 95% accuracy.</p>
+                <a href="#upload" class="cta-button">
+                    <i class="fas fa-search"></i> Try Live Detection
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload & Analysis Section -->
+    <section class="upload-section" id="upload">
+        <div class="container">
+            <div class="section-title">
+                <h2>Plant Detection</h2>
+                <p>Upload an image of a medicinal plant leaf or flower for AI analysis</p>
+            </div>
+            
+            <div class="upload-container">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Upload Plant Image</h3>
+                    <p>Drag & drop your image here or click to browse</p>
+                    <div class="upload-button" id="browseButton">
+                        <i class="fas fa-folder-open"></i> Browse Files
+                    </div>
+                    <p class="formats">Supported formats: JPG, PNG (Max 5MB)</p>
+                    <input type="file" id="fileInput" accept="image/*">
+                </div>
+                
+                <div class="image-preview" id="imagePreview">
+                    <!-- Preview will appear here -->
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="analyzeButton" disabled>
+                        <i class="fas fa-search"></i> Analyze Plant
+                    </button>
+                    <button class="btn btn-secondary" id="demoButton">
+                        <i class="fas fa-vial"></i> Load Demo (Tulsi)
+                    </button>
+                </div>
+                
+                <div class="loading" id="loadingIndicator">
+                    <div class="spinner"></div>
+                    <h3>Analyzing plant image...</h3>
+                    <p>Our AI model is identifying the species and extracting medicinal information</p>
+                </div>
+                
+                <div class="demo-section">
+                    <button class="demo-button" id="quickDemo">
+                        <i class="fas fa-bolt"></i> Quick Demo: See How It Works
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section" id="results">
+        <div class="container">
+            <div class="results-container" id="resultsContainer">
+                <div class="results-header">
+                    <div class="results-title">
+                        <h3>Detection Results</h3>
+                        <p>Identified by Leaf Detector AI Model</p>
+                    </div>
+                    <div class="confidence-badge">
+                        <i class="fas fa-chart-line"></i>
+                        Confidence: <span id="confidenceValue">0.72</span>
+                    </div>
+                </div>
+                
+                <div class="results-content">
+                    <div class="plant-info-card">
+                        <div class="card-title">
+                            <i class="fas fa-seedling"></i>
+                            <h4>Plant Information</h4>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Scientific Name:</div>
+                            <div class="info-value" id="scientificName">German tenuiflexum</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Common Name:</div>
+                            <div class="info-value" id="commonName">Tulsi (Holy Basil)</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Plant Type:</div>
+                            <div class="info-value" id="plantType">Medicinal Herb</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Family:</div>
+                            <div class="info-value" id="plantFamily">Lamiaceae</div>
+                        </div>
+                    </div>
+                    
+                    <div class="medicinal-uses-card">
+                        <div class="card-title">
+                            <i class="fas fa-heartbeat"></i>
+                            <h4>Medicinal Uses</h4>
+                        </div>
+                        <div class="uses-tags" id="usesTags">
+                            <span class="tag">Adaptogen</span>
+                            <span class="tag">Respiratory Relief</span>
+                            <span class="tag">Anti-inflammatory</span>
+                            <span class="tag">Antioxidant</span>
+                            <span class="tag">Stress Relief</span>
+                            <span class="tag">Immune Booster</span>
+                        </div>
+                        <div class="info-item" style="margin-top: 20px;">
+                            <div class="info-label">Traditional Use:</div>
+                        </div>
+                    </div>
+                    
+                    <div class="compounds-card">
+                        <div class="card-title">
+                            <i class="fas fa-flask"></i>
+                            <h4>Active Compounds</h4>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Primary:</div>
+                            <div class="info-value" id="primaryCompound">Eugenol (70-85%)</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Secondary:</div>
+                            <div class="info-value" id="secondaryCompound">Ursolic Acid, Rosmarinic Acid</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Other Compounds:</div>
+                            <div class="info-value">Linalool, Carvacrol, β-caryophyllene</div>
+                        </div>
+                        
+                        <div class="card-title" style="margin-top: 25px;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h4>Precautions</h4>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Safety:</div>
+                            <div class="info-value" id="safetyInfo">Generally safe. Consult with doctor if on blood-thinning medication.</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="export-buttons">
+                    <button class="export-btn" id="exportTxt">
+                        <i class="fas fa-file-alt"></i> Export TXT Report
+                    </button>
+                    <button class="export-btn" id="exportCsv">
+                        <i class="fas fa-file-csv"></i> Export CSV Data
+                    </button>
+                    <button class="export-btn" id="exportPdf">
+                        <i class="fas fa-file-pdf"></i> Generate PDF Report
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Showcase -->
+    <section class="project-section" id="project">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our AI Technology</h2>
+                <p>Powered by advanced deep learning and computer vision</p>
+            </div>
+            
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <div class="tech-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="tech-name">CNN</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="tech-name">MobileNet</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="tech-name">TensorFlow</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="tech-name">Cloud API</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="tech-name">10K+ Dataset</div>
+                </div>
+            </div>
+            
+            <div class="methodology">
+                <h3>How Our AI Model Works</h3>
+                <div class="method-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-name">Image Acquisition</div>
+                        <p>Upload plant image via web or mobile</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-name">Preprocessing</div>
+                        <p>Resize, normalize, enhance quality</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-name">Feature Extraction</div>
+                        <p>CNN extracts leaf patterns & textures</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-name">Classification</div>
+                        <p>Deep learning model identifies species</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-name">Results</div>
+                        <p>Display plant info & medicinal uses</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="about">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">
+                        <i class="fas fa-leaf"></i>
+                        Leaf Detector
+                    </div>
+                    <p>An AI-powered medicinal plant recognition system developed as a third-year engineering project using Convolutional Neural Networks (CNN).</p>
+                    <p>Accuracy: <strong>>95%</strong> | Species: <strong>150+</strong> | Dataset: <strong>10,000+ images</strong></p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Project Team</h4>
+                    <ul>
+                        <li>Roll no - 5 : Adinath Dound</li>
+                        <li>Roll no - 18 : Amritansh Jhawar</li>
+                        <li>Roll no - 23 : Anshul Meshram</li>
+                        <li>Roll no - 55 :Prathmesh Birajdar</li>
+                        <li>Roll no - 71 : Nikunj Bhutada</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#upload">Plant Detection</a></li>
+                        <li><a href="#project">Technology</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>Guide: Mrs. Anuja Zade</li>
+                        <li>Department: Information Technology</li>
+                        <li>Semester: SEM-III (2025-26)</li>
+                        <li>Group No: 7</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 Leaf Detector - Medicinal Plant Recognition System. Academic Project for SEM-III Engineering.</p>
+                <p>VIT University | Department of Information Technology</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Default API base for standalone frontend. Can be overridden by server or dev tool.
+        if (!window.API_BASE) {
+            window.API_BASE = 'http://127.0.0.1:8000';
+        }
+    </script>
+    <script src="/static/script.js"></script>
+</body>
+</html>
