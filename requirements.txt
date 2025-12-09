@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+pillow
+python-multipart
+numpy
+h5py
+# tensorflow-macos and tensorflow-metal are platform-specific; install them on macOS with Apple Silicon
+# tensorflow-macos
+# tensorflow-metal

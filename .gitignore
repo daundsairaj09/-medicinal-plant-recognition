@@ -1,3 +1,26 @@
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+.env
+.venv/
+venv/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# Data and large assets
+data/processed/
+models/*.h5
+
+# Editor/OS
+.vscode/
+.idea/
+.DS_Store
+
+# Logs
+*.log
 # Virtual env
 venv/
 # alternative virtualenv names

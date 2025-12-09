@@ -8,7 +8,13 @@ from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import JSONResponse, FileResponse
 from PIL import Image
 import numpy as np
-from tensorflow.keras.models import load_model
+# Import TensorFlow lazily — if it's not available the API will run in demo mode.
+try:
+    from tensorflow.keras.models import load_model as _load_model
+    HAS_TF = True
+except Exception:
+    _load_model = None
+    HAS_TF = False
 
 from src.config import MODEL_DIR, IMG_SIZE, KNOWLEDGE_BASE
 
@@ -46,11 +52,14 @@ class_indices = {}
 idx_to_class = {}
 
 try:
-    if os.path.exists(MODEL_PATH):
-        model = load_model(MODEL_PATH)
-        print(f"✅ Loaded model from {MODEL_PATH}")
+    if HAS_TF:
+        if os.path.exists(MODEL_PATH):
+            model = _load_model(MODEL_PATH)
+            print(f"✅ Loaded model from {MODEL_PATH}")
+        else:
+            print(f"⚠️ Model file not found at {MODEL_PATH}. API will run in demo mode.")
     else:
-        print(f"⚠️ Model file not found at {MODEL_PATH}. API will run in demo mode.")
+        print("⚠️ TensorFlow not available. API will run in demo mode.")
 
     if os.path.exists(CLASS_INDICES_PATH):
         with open(CLASS_INDICES_PATH, "r") as f:
